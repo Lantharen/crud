@@ -1,31 +1,21 @@
 <?php
 
+$firstName = $_POST['firstname'] ?? null;
+$lastName  = $_POST['lastname'] ?? null;
 
-$firstname = "";
-$lastname = "";
-
-if (isset($_POST['firstname'])) {
-    $firstname = $_POST['firstname'];
-}
-if (isset($_POST['lastname'])) {
-    $lastname = ($_POST['lastname']);
+if (null === $firstName || null === $lastName) {
+    die('Missing data!');
 }
 
+$firstName = htmlspecialchars($firstName);
+$lastName  = htmlspecialchars($lastName);
 
-$connect =mysqli_connect('127.0.0.1', 'root', '','site');
+$connect = mysqli_connect('mysql', 'root', 'root', 'default');
 
-$query = "INSERT INTO names (`firstname`, `lastname`) VALUES ('$firstname' , '$lastname')";
-$result = mysqli_query($connect,$query);
-
+$query  = "INSERT INTO `names` (`firstname`, `lastname`) VALUES ('$firstName' , '$lastName')";
+$result = mysqli_query($connect, $query);
 
 mysqli_close($connect);
 
-echo "
-<script type=\"text/javascript\">
-    window.location.href = \"crud.php\";
-</script>
-";
-
-
-?>
-
+header('Location: /crud/crud.php');
+die();

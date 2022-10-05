@@ -1,26 +1,24 @@
 <?php
 
-
-$id = "";
-
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (!isset($_GET['id'])) {
+    die('No ID :(');
 }
 
+$id = (int) $_GET['id'];
 
+$connect = mysqli_connect('mysql', 'root', 'root', 'default');
 
-$connect =mysqli_connect('127.0.0.1', 'root', '','site');
+$query  = 'SELECT * FROM `names` WHERE `id` = '.$id;
+$result = mysqli_query($connect, $query);
 
-$query = 'SELECT * FROM names WHERE id = ' . $id;
-$result = mysqli_query($connect,$query);
+$name = mysqli_fetch_assoc($result);
 
-$names = mysqli_fetch_row($result);
+if (null === $name) {
+    die('User not found!');
+}
 
 mysqli_close($connect);
-//print_r($names);
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,22 +29,19 @@ mysqli_close($connect);
     <title>Ebus' 3 dnya</title>
 </head>
 <body>
+
 <h1>
-
     <?php
-    echo "$names[1] $names[2]";
-
+    echo $name['firstname'].' '.$name['lastname'];
     ?>
 </h1>
 
-
 <form action="update.php" method="POST">
-    <input type="hidden" name="id" value="<?php echo $names[0]?>">
-    <input type="text" name="firstname" value="<?php echo $names[1]?>">
-    <input type="text" name="lastname" value="<?php echo $names[2]?>">
+    <input type="hidden" name="id" value="<?php echo htmlspecialchars($name['id']); ?>">
+    <input type="text" name="firstname" value="<?php echo htmlspecialchars($name['firstname']); ?>">
+    <input type="text" name="lastname" value="<?php echo htmlspecialchars($name['lastname']); ?>">
     <input type="submit" value="Refresh">
 </form>
 
 </body>
 </html>
-
