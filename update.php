@@ -12,7 +12,7 @@ $id        = (int) $id;
 $firstName = htmlspecialchars($firstName);
 $lastName  = htmlspecialchars($lastName);
 
-$connect = mysqli_connect('127.0.0.1', 'root1', '', 'site');
+$connect = mysqli_connect('127.0.0.1', 'root', '', 'site');
 $query   = 'UPDATE `names` SET `firstname` = "'.$firstName.'", `lastname` = "'.$lastName.'" WHERE `id` = '.$id;
 
 $result  = mysqli_query($connect, $query);

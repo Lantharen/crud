@@ -6,7 +6,7 @@ $id = $_GET['id'] ?? null;
 $id = (int)$id;
 
 
-$connect = mysqli_connect('127.0.0.1', 'root1', '', 'site');
+$connect = mysqli_connect('127.0.0.1', 'root', '', 'site');
 
 $query = "SELECT * FROM `names` WHERE `id` = '$id'";
 //echo $query;
