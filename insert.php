@@ -10,7 +10,7 @@ if (null === $firstName || null === $lastName) {
 $firstName = htmlspecialchars($firstName);
 $lastName  = htmlspecialchars($lastName);
 
-$connect = mysqli_connect('127.0.0.1', 'root', '', 'site');
+$connect = mysqli_connect('127.0.0.1', 'root1', '', 'site');
 
 $query  = "INSERT INTO `names` (`firstname`, `lastname`) VALUES ('$firstName' , '$lastName')";
 $result = mysqli_query($connect, $query);

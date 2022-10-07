@@ -1,6 +1,6 @@
 <?php
 
-$connect = mysqli_connect('127.0.0.1', 'root', '', 'site');
+$connect = mysqli_connect('127.0.0.1', 'root1', '', 'site');
 
 $query  = "SELECT * FROM `names`";
 $result = mysqli_query($connect, $query);

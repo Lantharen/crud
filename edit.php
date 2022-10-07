@@ -6,7 +6,7 @@ if (!isset($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-$connect = mysqli_connect('127.0.0.1', 'root', '', 'site');
+$connect = mysqli_connect('127.0.0.1', 'root1', '', 'site');
 
 $query  = 'SELECT * FROM `names` WHERE `id` = '.$id;
 $result = mysqli_query($connect, $query);
