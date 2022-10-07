@@ -17,7 +17,7 @@ if (mysqli_num_rows($result) > 0) {
     mysqli_query($connect, $query) or die (mysqli_error($connect));
     $query = "SELECT * FROM `names` WHERE `id` = '$id'";
     $result = mysqli_query($connect, $query) or die (mysqli_error($connect));
-    if (mysqli_num_rows($result) == 0) {
+    if (mysqli_num_rows($result) === 0) {
         echo "</br>Строка удалена.";
     }
 }
